@@ -52,7 +52,7 @@ FROM sonarqube:6.7-alpine
 
 ``jenkins/Dockerfile``
 ```
-FROM jenkins:2.60.3
+FROM jenkins
 ```
 
 If we run the following command in the same directory as the ``docker-compose.yml`` file, the Sonarqube and Jenkins containers will up and run.
