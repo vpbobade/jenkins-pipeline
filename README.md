@@ -68,26 +68,6 @@ CONTAINER ID        IMAGE                COMMAND                  CREATED       
 ca8f0b63469f       pipeline_jenkins     "/bin/tini -- /usr..."   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp   jenkins
 f5bed5ba3266        pipeline_sonarqube   "./bin/run.sh"           About a minute ago   Up About a minute   0.0.0.0:9000->9000/tcp, 0.0.0.0:9092->9092/tcp     sonarqube
 ```
-
-## GitHub configuration
-We’ll define a service on Github to call the ``Jenkins Github webhook`` because we want to trigger the pipeline. To do this go to _Settings -> Integrations & services._ The ``Jenkins Github plugin`` should be shown on the list of available services as below.
-
-![](images/001.png)
-
-After this, we should add a new service by typing the URL of the dockerized Jenkins container along with the ``/github-webhook/`` path.
-
-![](images/002.png)
-
-The next step is that create an ``SSH key`` for a Jenkins user and define it as ``Deploy keys`` on our GitHub repository.
-
-![](images/003.png)
-
-If everything goes well, the following connection request should return with a success.
-```
-ssh git@github.com
-PTY allocation request failed on channel 0
-Hi <your github username>/<repository name>! You've successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
 ```
 
 ## Jenkins configuration
@@ -153,13 +133,13 @@ In this step, we select ``GitHub hook trigger for GITScm pooling`` options for a
 
 ![](images/011.png)
 
-Also in the Pipeline section, we select the ``Pipeline script from SCM`` as Definition, define the GitHub repository and the branch name, and specify the script location (_[https://github.com/vineet68sharma/CI-CD-Docker/blob/master/Jenkinsfile)_).
+Also in the Pipeline section, we select the ``Pipeline script from SCM`` as Definition, define the GitHub repository and the branch name, and specify the script location (_[https://github.com/prakashk0301/CI-CD-Docker/blob/master/Jenkinsfile)_).
 
 ![](images/012.png)
 
 Create a repository in docker hub so the built image is pushed to docker registry with its credentials (need to be filled in jenkinsFile)
  
-![](images/016.png)
+![]()
 
 
 After that, when a push is done to the remote repository or when you manually trigger the pipeline by ``Build Now`` option, the steps described in Jenkins file will be executed.
